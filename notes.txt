@@ -1,5 +1,6 @@
 Compile C
 	gcc -Wall <myName>.c -o <compiled name> -l wiringPi
+compile C++
 	gcc -Wall <Mycode>.cpp -o <complileName>  -lstdc++
 	
 Setup Wifi
