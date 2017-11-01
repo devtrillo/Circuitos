@@ -5,12 +5,12 @@ int main(int argc, char const *argv[])
 {
 	printf("Turn on LED\n");
 	wiringPiSetup();
-	pinMode(0,OUTPUT);
+	pinMode(7,OUTPUT);
 	while(1){	
-		digitalWrite(0,HIGH);
-		delay(150);
-		digitalWrite(0,LOW);
-		delay(50);
+		digitalWrite(7,HIGH);
+		delay(10);
+		digitalWrite(7,LOW);
+		delay(100);
 
 	}
 	return 0;

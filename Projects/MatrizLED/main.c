@@ -10,23 +10,19 @@ int main(int argc, char const *argv[])
 	pinMode(2,OUTPUT);
 	pinMode(3,OUTPUT);
 	pinMode(7,INPUT);
-	int left=1;
+	int index=0;
+	int del=500;
 	pullUpDnControl(7,PUD_UP);
-	for (int i = 0; i < 100; ++i)
+	while(1)
 	{			
-		for (int j = 0; j < 4&&left==1; j++)
-		{
-			printf("Going left\n");
-			left = digitalRead(7);
-			turnLED(j);
-			delay(500);
+		
+		if(digitalRead(7)==1){
+			index=(index+1)%4;
+		}else{
+			index=(index-1<0)?3:index-1;
 		}
-		for(int k=3;k>=0 && left==0;k--){
-			printf("Going right\n");
-			left = digitalRead(7);
-			turnLED(k);
-			delay(500);		
-		}
+		turnLED(index); 
+		delay(del);
 	} 
 	turnLED(10);
 	return 0;
