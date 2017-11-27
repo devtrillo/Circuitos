@@ -1,17 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//#include <unistd.h>
-//#include <termios.h>
-#include <conio.h>
-
-void delay(int milli_seconds)
-{
-	clock_t start_time = clock();
-	while (clock() < start_time + milli_seconds)
-		;
-}
-
+#include <unistd.h>
+#include <termios.h>
+//Output PINS
+//INPUT pins
+//7,0,2,3
+void Initialice();
 int main(int argc, char const *argv[])
 {
 	srand(time(NULL));
@@ -32,7 +27,7 @@ int main(int argc, char const *argv[])
 		i = 0;
 		//Recive input
 		while (i <= size) {
-			input = _getch() - '0';
+			input = SwitchNumberInput() - '0';
 			if (input != sequence[i]) {
 				printf("Secuencia incorrecta\n");
 				return -1;
@@ -45,4 +40,27 @@ int main(int argc, char const *argv[])
 	}
 	printf("Congratulations you finished");
 	return 0;
+}
+void Initialice() {
+	pinMode(7, INPUT);
+	pinMode(0, INPUT);
+	pinMode(2, INPUT);
+	pinMode(3, INPUT); 
+	pullUpDnControl(7, PUD_UP);
+	pullUpDnControl(0, PUD_UP);
+	pullUpDnControl(2, PUD_UP);
+	pullUpDnControl(3, PUD_UP);
+}
+int SwitchNumberInput() {
+	int index = 999;
+	while (index==999){
+		if(digitalRead(7)==1)
+			index=1;
+		if(digitalRead(0)==1)
+			index=2;
+		if(digitalRead(2)==1)
+			index=3;
+		if(digitalRead(3)==1)
+			index=4;
+	}
 }
